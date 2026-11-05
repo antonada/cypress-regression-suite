@@ -17,8 +17,8 @@ for i in "${!SPECS[@]}"; do
     exit 1
   fi
   inputs+=(-i "$file")
-  # Cypress runs faster than anyone can read, so each clip plays at two thirds of real speed
-  filter+="[${i}:v]setpts=1.5*PTS,scale=1600:-2,fps=25[c${i}];"
+  # Cypress runs faster than anyone can read, so each clip is slowed down a bit
+  filter+="[${i}:v]setpts=1.6*PTS,scale=1600:-2,fps=25[c${i}];"
 done
 for i in "${!SPECS[@]}"; do filter+="[c${i}]"; done
 filter+="concat=n=${#SPECS[@]}:v=1:a=0[v]"
