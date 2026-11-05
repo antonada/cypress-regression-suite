@@ -41,6 +41,13 @@ jobs:
           node-version: 22
           cache: npm
 
+      # The runner's preinstalled Firefox kept timing out when Cypress tried to connect, so use a build straight from Mozilla
+      - name: Install Firefox
+        if: ${{ matrix.browser == 'firefox' }}
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: latest
+
       - name: Run Cypress
         uses: cypress-io/github-action@v7
         with:
