@@ -1,0 +1,97 @@
+name: Cypress regression
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      # Lint and type checks don't need the Cypress app itself
+      CYPRESS_INSTALL_BINARY: 0
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+
+  cypress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
+    name: cypress (${{ matrix.browser }})
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v7
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: http://localhost:4173/api/health
+          browser: ${{ matrix.browser }}
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: report-${{ matrix.browser }}
+          path: cypress/reports/
+          retention-days: 14
+
+      - name: Upload screenshots of failures
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: screenshots-${{ matrix.browser }}
+          path: cypress/screenshots/
+          if-no-files-found: ignore
+
+  publish-report:
+    # Publishes the reports from main, even when some tests failed
+    needs: cypress
+    if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: report-*
+          path: site
+
+      - name: Arrange report folders
+        run: |
+          for dir in site/report-*; do mv "$dir" "site/${dir#site/report-}"; done
+          cp .github/report-index.html site/index.html
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
