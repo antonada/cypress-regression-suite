@@ -1,0 +1,222 @@
+{
+  "items": [
+    {
+      "id": "ORD-1045",
+      "customer": {
+        "name": "Ethan Walsh",
+        "email": "ethan.walsh@example.com"
+      },
+      "items": [
+        {
+          "name": "Standing desk mat",
+          "quantity": 1,
+          "unitPrice": 4900
+        },
+        {
+          "name": "Noise-cancelling headphones",
+          "quantity": 1,
+          "unitPrice": 19900
+        },
+        {
+          "name": "Cable organizer kit",
+          "quantity": 1,
+          "unitPrice": 1900
+        }
+      ],
+      "total": 26700,
+      "status": "shipped",
+      "createdAt": "2026-10-31T17:00:00.000Z"
+    },
+    {
+      "id": "ORD-1044",
+      "customer": {
+        "name": "Diego Alvarez",
+        "email": "diego.alvarez@example.com"
+      },
+      "items": [
+        {
+          "name": "USB-C hub",
+          "quantity": 3,
+          "unitPrice": 5900
+        },
+        {
+          "name": "Webcam 1080p",
+          "quantity": 2,
+          "unitPrice": 6900
+        }
+      ],
+      "total": 31500,
+      "status": "pending",
+      "createdAt": "2026-10-31T10:00:00.000Z"
+    },
+    {
+      "id": "ORD-1043",
+      "customer": {
+        "name": "Grace Lindqvist",
+        "email": "grace.lindqvist@example.com"
+      },
+      "items": [
+        {
+          "name": "Noise-cancelling headphones",
+          "quantity": 2,
+          "unitPrice": 19900
+        },
+        {
+          "name": "USB-C hub",
+          "quantity": 1,
+          "unitPrice": 5900
+        },
+        {
+          "name": "Cable organizer kit",
+          "quantity": 2,
+          "unitPrice": 1900
+        }
+      ],
+      "total": 49500,
+      "status": "cancelled",
+      "createdAt": "2026-10-31T03:00:00.000Z"
+    },
+    {
+      "id": "ORD-1042",
+      "customer": {
+        "name": "Noah Fischer",
+        "email": "noah.fischer@example.com"
+      },
+      "items": [
+        {
+          "name": "Standing desk mat",
+          "quantity": 2,
+          "unitPrice": 4900
+        },
+        {
+          "name": "Noise-cancelling headphones",
+          "quantity": 3,
+          "unitPrice": 19900
+        }
+      ],
+      "total": 69500,
+      "status": "pending",
+      "createdAt": "2026-10-30T20:00:00.000Z"
+    },
+    {
+      "id": "ORD-1041",
+      "customer": {
+        "name": "Hannah Kim",
+        "email": "hannah.kim@example.com"
+      },
+      "items": [
+        {
+          "name": "Laptop stand",
+          "quantity": 1,
+          "unitPrice": 3900
+        },
+        {
+          "name": "Desk lamp",
+          "quantity": 2,
+          "unitPrice": 4500
+        }
+      ],
+      "total": 12900,
+      "status": "paid",
+      "createdAt": "2026-10-30T13:00:00.000Z"
+    },
+    {
+      "id": "ORD-1040",
+      "customer": {
+        "name": "Maya Patel",
+        "email": "maya.patel@example.com"
+      },
+      "items": [
+        {
+          "name": "Desk lamp",
+          "quantity": 1,
+          "unitPrice": 4500
+        }
+      ],
+      "total": 4500,
+      "status": "paid",
+      "createdAt": "2026-10-30T06:00:00.000Z"
+    },
+    {
+      "id": "ORD-1039",
+      "customer": {
+        "name": "Sofia Rossi",
+        "email": "sofia.rossi@example.com"
+      },
+      "items": [
+        {
+          "name": "Desk lamp",
+          "quantity": 3,
+          "unitPrice": 4500
+        }
+      ],
+      "total": 13500,
+      "status": "cancelled",
+      "createdAt": "2026-10-29T23:00:00.000Z"
+    },
+    {
+      "id": "ORD-1038",
+      "customer": {
+        "name": "Ethan Walsh",
+        "email": "ethan.walsh@example.com"
+      },
+      "items": [
+        {
+          "name": "USB-C hub",
+          "quantity": 3,
+          "unitPrice": 5900
+        },
+        {
+          "name": "Standing desk mat",
+          "quantity": 3,
+          "unitPrice": 4900
+        },
+        {
+          "name": "Standing desk mat",
+          "quantity": 3,
+          "unitPrice": 4900
+        }
+      ],
+      "total": 47100,
+      "status": "shipped",
+      "createdAt": "2026-10-29T16:00:00.000Z"
+    },
+    {
+      "id": "ORD-1037",
+      "customer": {
+        "name": "Lucas Moreau",
+        "email": "lucas.moreau@example.com"
+      },
+      "items": [
+        {
+          "name": "USB-C hub",
+          "quantity": 3,
+          "unitPrice": 5900
+        }
+      ],
+      "total": 17700,
+      "status": "pending",
+      "createdAt": "2026-10-29T09:00:00.000Z"
+    },
+    {
+      "id": "ORD-1036",
+      "customer": {
+        "name": "Amara Okafor",
+        "email": "amara.okafor@example.com"
+      },
+      "items": [
+        {
+          "name": "Noise-cancelling headphones",
+          "quantity": 3,
+          "unitPrice": 19900
+        }
+      ],
+      "total": 59700,
+      "status": "paid",
+      "createdAt": "2026-10-29T02:00:00.000Z"
+    }
+  ],
+  "total": 45,
+  "page": 1,
+  "pageSize": 10
+}
