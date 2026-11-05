@@ -1,0 +1,48 @@
+{
+  "name": "cypress-regression-suite",
+  "version": "1.0.0",
+  "description": "Cypress regression suite for a small order admin app, with stubbed API responses for error, empty and loading states.",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "node server/index.js",
+    "dev:web": "vite",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test start http://localhost:4173/api/health cy:run",
+    "test:smoke": "start-server-and-test start http://localhost:4173/api/health \"cypress run --env grepTags=@smoke\"",
+    "typecheck": "tsc -p cypress/tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@cypress/grep": "^7.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "@vitejs/plugin-react": "^6.2.1",
+    "concurrently": "^10.0.6",
+    "cypress": "^16.2.1",
+    "cypress-mochawesome-reporter": "^5.0.0",
+    "eslint": "^10.14.0",
+    "eslint-plugin-cypress": "^7.0.3",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5",
+    "start-server-and-test": "^3.0.13",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.6"
+  }
+}
