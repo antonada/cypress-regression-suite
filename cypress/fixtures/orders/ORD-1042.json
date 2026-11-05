@@ -1,0 +1,22 @@
+{
+  "id": "ORD-1042",
+  "customer": {
+    "name": "Noah Fischer",
+    "email": "noah.fischer@example.com"
+  },
+  "items": [
+    {
+      "name": "Standing desk mat",
+      "quantity": 2,
+      "unitPrice": 4900
+    },
+    {
+      "name": "Noise-cancelling headphones",
+      "quantity": 3,
+      "unitPrice": 19900
+    }
+  ],
+  "total": 69500,
+  "status": "pending",
+  "createdAt": "2026-10-30T20:00:00.000Z"
+}
