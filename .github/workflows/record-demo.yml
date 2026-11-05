@@ -1,0 +1,40 @@
+name: Record demo
+
+# Run by hand when the UI changes. Records a few specs and commits the video to docs/media.
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Record specs
+        uses: cypress-io/github-action@v7
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: http://localhost:4173/api/health
+          browser: chrome
+          config-file: cypress.demo.config.ts
+
+      - name: Install ffmpeg
+        run: command -v ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+
+      - name: Build demo.mp4 and demo.gif
+        run: bash scripts/make-demo-media.sh
+
+      - name: Commit the recording
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/media
+          git diff --cached --quiet || git commit -m "Update demo recording"
+          git push
