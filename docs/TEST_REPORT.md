@@ -39,7 +39,7 @@ Case IDs and expected results are in the [test plan](TEST_PLAN.md).
 
 ## Stability
 
-No test has needed the allowed retry on any run so far. One CI problem came up that wasn't about the tests: after a runner image update, the preinstalled Firefox stopped connecting to Cypress at all, so no spec could start. CI now installs Firefox straight from Mozilla, and every run since has passed in all three browsers.
+No test has needed the allowed retry on any run so far. One CI problem came up that wasn't about the tests: for a few runs the runner's preinstalled Firefox never connected to Cypress, so no Firefox spec could start. CI now installs Firefox straight from Mozilla, and every run since has passed in all three browsers.
 
 The only fixed wait (`loading-and-timing.cy.ts`, stale response test) is intentional and explained in the spec.
 
