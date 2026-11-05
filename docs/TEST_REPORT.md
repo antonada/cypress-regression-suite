@@ -9,8 +9,8 @@ https://antonada.github.io/cypress-regression-suite/, and all runs are on the
 |              |                                                                                               |
 | ------------ | --------------------------------------------------------------------------------------------- |
 | Date         | 5 November 2026                                                                               |
-| Commit       | `56ef54c`                                                                                     |
-| CI run       | [#42055406045](https://github.com/antonada/cypress-regression-suite/actions/runs/42055406045) |
+| Commit       | `f2a9cc1`                                                                                     |
+| CI run       | [#42057567969](https://github.com/antonada/cypress-regression-suite/actions/runs/42057567969) |
 | Environment  | GitHub Actions, `ubuntu-26.04`, Cypress 16.2, Node 22 for the app                             |
 | Result       | **150 passed** (50 tests in 3 browsers), 0 failed, 0 skipped                                  |
 | Retries used | none (one retry is allowed in CI, no test needed it)                                          |
@@ -20,8 +20,8 @@ https://antonada.github.io/cypress-regression-suite/, and all runs are on the
 | Browser     |   Tests |  Passed | Failed | Spec time |
 | ----------- | ------: | ------: | -----: | --------: |
 | Chrome 156  |      50 |      50 |      0 |      32 s |
-| Edge 156    |      50 |      50 |      0 |      31 s |
-| Firefox 158 |      50 |      50 |      0 |      39 s |
+| Edge 156    |      50 |      50 |      0 |      34 s |
+| Firefox 159 |      50 |      50 |      0 |      33 s |
 | **Total**   | **150** | **150** |  **0** |           |
 
 ## Results by spec
@@ -39,7 +39,9 @@ Case IDs and expected results are in the [test plan](TEST_PLAN.md).
 
 ## Stability
 
-The suite has been green on every run of `main` since it was pushed, in all three browsers, without using the allowed retry. The only fixed wait (`loading-and-timing.cy.ts`, stale response test) is intentional and explained in the spec.
+No test has needed the allowed retry on any run so far. One CI problem came up that wasn't about the tests: after a runner image update, the preinstalled Firefox stopped connecting to Cypress at all, so no spec could start. CI now installs Firefox straight from Mozilla, and every run since has passed in all three browsers.
+
+The only fixed wait (`loading-and-timing.cy.ts`, stale response test) is intentional and explained in the spec.
 
 ## Defects found
 
