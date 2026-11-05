@@ -1,0 +1,5 @@
+dist/
+cypress/reports/
+cypress/fixtures/
+package-lock.json
+docs/media/
