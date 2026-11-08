@@ -8,9 +8,9 @@ https://antonada.github.io/cypress-regression-suite/, and all runs are on the
 
 |              |                                                                                               |
 | ------------ | --------------------------------------------------------------------------------------------- |
-| Date         | 5 November 2026                                                                               |
-| Commit       | `f2a9cc1`                                                                                     |
-| CI run       | [#42057567969](https://github.com/antonada/cypress-regression-suite/actions/runs/42057567969) |
+| Date         | 8 November 2026                                                                               |
+| Commit       | `5a9166c`                                                                                     |
+| CI run       | [#42493947854](https://github.com/antonada/cypress-regression-suite/actions/runs/42493947854) |
 | Environment  | GitHub Actions, `ubuntu-26.04`, Cypress 16.2, Node 22 for the app                             |
 | Result       | **150 passed** (50 tests in 3 browsers), 0 failed, 0 skipped                                  |
 | Retries used | none (one retry is allowed in CI, no test needed it)                                          |
@@ -19,8 +19,8 @@ https://antonada.github.io/cypress-regression-suite/, and all runs are on the
 
 | Browser     |   Tests |  Passed | Failed | Spec time |
 | ----------- | ------: | ------: | -----: | --------: |
-| Chrome 156  |      50 |      50 |      0 |      32 s |
-| Edge 156    |      50 |      50 |      0 |      34 s |
+| Chrome 156  |      50 |      50 |      0 |      30 s |
+| Edge 156    |      50 |      50 |      0 |      35 s |
 | Firefox 159 |      50 |      50 |      0 |      33 s |
 | **Total**   | **150** | **150** |  **0** |           |
 
