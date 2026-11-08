@@ -4,7 +4,7 @@
 ![Cypress](https://img.shields.io/badge/Cypress-16-69D3A7?logo=cypress&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 
-Regression tests for **Orderly**, a small order admin app that lives in this repo. A handful of end-to-end scenarios run against the real API, and the rest of the suite uses `cy.intercept()` to make the API return exactly what a test needs: nothing at all, an error, a slow reply, or data with holes in it. Those are the states that usually break first in a real product and are the hardest to reproduce by hand.
+Regression tests for Orderly, a small order admin app that lives in this repo. A handful of end-to-end scenarios run against the real API, and the rest of the suite uses `cy.intercept()` to make the API return exactly what a test needs: nothing at all, an error, a slow reply, or data with holes in it. Those are the states that usually break first in a real product and are the hardest to reproduce by hand.
 
 ![Cypress run](docs/media/demo.gif)
 
@@ -21,7 +21,7 @@ Full quality video: [docs/media/demo.mp4](docs/media/demo.mp4)
 | Orders list               |     8 | Paging, sorting, filters, state kept in the URL, formatting of dates, money and statuses                    |
 | New order form            |    12 | Required fields, 9 invalid inputs, errors clearing, exact request payload                                   |
 
-That's **50 tests**, run in Chrome, Firefox and Edge on every push: 150 runs in total. Each case has an ID in the [test plan](docs/TEST_PLAN.md), and the latest numbers are in the [test report](docs/TEST_REPORT.md).
+That's 50 tests, run in Chrome, Firefox and Edge on every push: 150 runs in total. Each case has an ID in the [test plan](docs/TEST_PLAN.md), and the latest numbers are in the [test report](docs/TEST_REPORT.md).
 
 ## How the API responses are faked
 
@@ -107,19 +107,23 @@ docs/                   test plan, test report, demo video
 
 Every run produces a Mochawesome HTML report per browser, with screenshots of failures embedded. Reports from `main` are published to GitHub Pages:
 
-**https://antonada.github.io/cypress-regression-suite/**
+https://antonada.github.io/cypress-regression-suite/
 
 ## CI
 
 [`cypress.yml`](.github/workflows/cypress.yml) runs lint and type checks, then the suite in Chrome, Firefox and Edge in parallel, and publishes the reports. [`record-demo.yml`](.github/workflows/record-demo.yml) is started by hand and re-records the video in `docs/media`.
 
-## A few decisions worth explaining
+## Design notes
 
-- **`data-cy` attributes for selectors.** They don't change when someone restyles a button or rewrites its text. Text is still asserted, but it's not used to find elements.
-- **Sign in once.** `cy.login()` gets a token through the API and caches it with `cy.session()`. A `validate` step checks the token still works, because the server forgets tokens on logout.
-- **Real data where it matters.** The workflow specs reset the server to the same seed before each test and don't stub anything, so they'd catch a broken API too.
-- **Shared validation.** The new order rules live in one module used by both the React form and the Express API, and both sides are tested.
-- **One deliberate wait.** The stale-response test has to outlast a slow reply to prove it gets ignored. It's commented in the spec. Everything else waits on aliases or assertions.
+Elements are found by `data-cy` attributes. They don't change when someone restyles a button or rewrites its label. Text is still asserted, it's just not used to find things.
+
+`cy.login()` gets a token through the API and caches it with `cy.session()`. The `validate` step makes sure the cached token still works, because the server forgets tokens on logout.
+
+The workflow specs reset the server to the same seed before each test and don't stub anything, so they'd catch a broken API too.
+
+The new order rules live in one module that both the React form and the Express API use, and both sides are tested.
+
+There's exactly one fixed wait in the suite. The stale response test has to outlast a slow reply to prove it gets ignored, and there's a comment explaining it. Everything else waits on aliases or assertions.
 
 ## License
 

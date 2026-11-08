@@ -8,11 +8,11 @@ The focus is on states that are easy to forget and hard to reproduce by hand: em
 
 ## Approach
 
-- **Real API for the main workflows.** Specs in `workflows.cy.ts` talk to the real server, which is reset to the same seed data before every test.
-- **Stubbed API for everything else.** `cy.intercept()` returns exactly the response a test needs: an empty page, a 500, a 403, a dropped connection, a slow reply or an order with missing fields.
-- **Requests are checked, not just the UI.** Many tests also assert what the app sent: query parameters, request bodies and how many requests went out.
-- **Fast sign-in.** `cy.login()` signs in through the API and caches the session with `cy.session()`. Only the tests that are about signing in use the form.
-- **No guessing about time.** The search debounce is tested with `cy.clock()` and `cy.tick()`. There's one fixed wait in the whole suite, explained in the spec.
+- Specs in `workflows.cy.ts` talk to the real server, which is reset to the same seed data before every test.
+- Everything else stubs the API with `cy.intercept()` and returns exactly what the test needs: an empty page, a 500, a 403, a dropped connection, a slow reply or an order with missing fields.
+- Many tests also assert what the app sent: query parameters, request bodies and how many requests went out.
+- `cy.login()` signs in through the API and caches the session with `cy.session()`. Only the tests that are about signing in use the form.
+- The search debounce is tested with `cy.clock()` and `cy.tick()`. There's one fixed wait in the whole suite, explained in the spec.
 
 ## Test cases
 
